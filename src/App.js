@@ -9,11 +9,14 @@ function App() {
     // assuming no duplicates for demo purposes
     setItems([...items, item]);
   };
+  const removeItem = (itemToBeDeleted) => {
+    setItems(items.filter((item) => itemToBeDeleted !== item));
+  };
   return (
     <div className="App">
       <header className="App-header">
         To Do items
-        <ItemList items={items} />
+        <ItemList items={items} removeItem={removeItem} />
         <AddItemForm addItem={addItem} />
       </header>
     </div>
