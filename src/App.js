@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import AddItemForm from './AddItemForm';
 import './App.css';
 import ItemList from './ItemList';
+import itemsReducer from './reducers/items';
 
 function App() {
-  const [items, setItems] = useState([]);
+  const [items, itemsDispatch] = useReducer(itemsReducer, []);
   const addItem = (item) => {
     // assuming no duplicates for demo purposes
-    setItems([...items, item]);
+    itemsDispatch({ type: 'ADD_ITEM', item });
   };
 
   const removeItem = (itemToBeDeleted) => {
-    setItems(items.filter((item) => itemToBeDeleted !== item));
+    itemsDispatch({ type: 'REMOVE_ITEM', itemToBeDeleted });
   };
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('items'));
     if (items) {
-      setItems(items);
+      itemsDispatch({ type: 'POPULATE_ITEMS', items });
     }
   }, []);
 
