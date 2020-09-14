@@ -7,10 +7,6 @@ import itemsReducer from './reducers/items';
 
 function App() {
   const [items, itemsDispatch] = useReducer(itemsReducer, []);
-  const addItem = (item) => {
-    // assuming no duplicates for demo purposes
-    itemsDispatch({ type: 'ADD_ITEM', item });
-  };
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('items'));
@@ -29,7 +25,7 @@ function App() {
         <header className="App-header">
           To Do items
           <ItemList />
-          <AddItemForm addItem={addItem} />
+          <AddItemForm />
         </header>
       </div>
     </ItemsContext.Provider>

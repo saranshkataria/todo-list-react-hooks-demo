@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import ItemsContext from './context/items-context';
 
-const AddItemForm = ({ addItem }) => {
+const AddItemForm = () => {
   const [item, setItem] = useState('');
+  const { itemsDispatch } = useContext(ItemsContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addItem(item);
+    // assuming no duplicates for demo purposes
+    itemsDispatch({ type: 'ADD_ITEM', item });
     setItem('');
   };
 
