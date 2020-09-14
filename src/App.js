@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import AddItemForm from './AddItemForm';
 import './App.css';
+import ItemsContext from './context/items-context';
 import ItemList from './ItemList';
 import itemsReducer from './reducers/items';
 
@@ -9,10 +10,6 @@ function App() {
   const addItem = (item) => {
     // assuming no duplicates for demo purposes
     itemsDispatch({ type: 'ADD_ITEM', item });
-  };
-
-  const removeItem = (itemToBeDeleted) => {
-    itemsDispatch({ type: 'REMOVE_ITEM', itemToBeDeleted });
   };
 
   useEffect(() => {
@@ -27,13 +24,15 @@ function App() {
   }, [items]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        To Do items
-        <ItemList items={items} removeItem={removeItem} />
-        <AddItemForm addItem={addItem} />
-      </header>
-    </div>
+    <ItemsContext.Provider value={{ items, itemsDispatch }}>
+      <div className="App">
+        <header className="App-header">
+          To Do items
+          <ItemList />
+          <AddItemForm addItem={addItem} />
+        </header>
+      </div>
+    </ItemsContext.Provider>
   );
 }
 

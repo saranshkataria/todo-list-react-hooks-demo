@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ItemsContext from './context/items-context';
 
-const Item = ({ item, removeItem }) => {
+const Item = ({ item }) => {
+  const { itemsDispatch } = useContext(ItemsContext);
+
   return (
     <div>
       <span>{item}</span>
-      <button onClick={() => removeItem(item)}>X</button>
+      <button
+        onClick={() =>
+          itemsDispatch({ type: 'REMOVE_ITEM', itemToBeDeleted: item })
+        }
+      >
+        X
+      </button>
     </div>
   );
 };
