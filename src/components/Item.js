@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ItemsContext from './context/items-context';
+import ItemsContext from '../context/items-context';
 
 const Item = ({ item }) => {
   const { itemsDispatch } = useContext(ItemsContext);

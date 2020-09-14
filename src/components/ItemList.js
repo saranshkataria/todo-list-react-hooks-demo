@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ItemsContext from './context/items-context';
+import ItemsContext from '../context/items-context';
 import Item from './Item';
 
 const ItemList = () => {

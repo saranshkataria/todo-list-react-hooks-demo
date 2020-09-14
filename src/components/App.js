@@ -1,9 +1,9 @@
 import React, { useEffect, useReducer } from 'react';
+import ItemsContext from '../context/items-context';
+import itemsReducer from '../reducers/items';
 import AddItemForm from './AddItemForm';
 import './App.css';
-import ItemsContext from './context/items-context';
 import ItemList from './ItemList';
-import itemsReducer from './reducers/items';
 
 function App() {
   const [items, itemsDispatch] = useReducer(itemsReducer, []);

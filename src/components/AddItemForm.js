@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import ItemsContext from './context/items-context';
+import ItemsContext from '../context/items-context';
 
 const AddItemForm = () => {
   const [item, setItem] = useState('');
